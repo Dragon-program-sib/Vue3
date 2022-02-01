@@ -2,7 +2,10 @@
 	<div class="app">
 		<h1>Страница с постами</h1>
 		<!-- <my-button @click="fetchPosts">Получить посты</my-button> -->
-		<my-button @click="showDialog" style="margin: 15px 0">Создать пост</my-button>
+		<div class="app__btns">
+			<my-button @click="showDialog">Создать пост</my-button>
+			<my-select v-model="selectedSort" :options='sortOptions' />
+		</div>
 		<my-dialog v-model:show="dialogVisible">
 			<post-form @create="createPost" />
 		</my-dialog>
@@ -15,11 +18,15 @@
 <script>
 	import PostForm from "@/components/PostForm";
 	import PostList from "@/components/PostList";
+	import MyButton from "@/components/UI/MyButton";
+	import MySelect from "@/components/UI/MySelect";
 	import axios from 'axios';
 	export default {
 		components: {
 			PostForm,
 			PostList,
+			MyButton,
+			MySelect
 		},
 		data() {
 			return {
@@ -30,6 +37,11 @@
 				],
 				dialogVisible: false,
 				isPostsLoading: false,
+				selectedSort: '',
+				sortOptions: [
+					{value: 'title', name: 'По названию'},
+					{value: 'body', name: 'По содержимому'}
+				]
 			};
 		},
 		methods: {
@@ -62,7 +74,7 @@
 	};
 </script>
 
-<style>
+<style scoped>
 	* {
 		margin: 0;
 		padding: 0;
@@ -71,5 +83,11 @@
 
 	.app {
 		padding: 20px;
+	}
+
+	.app__btns {
+		display: flex;
+		justify-content: space-between;
+		margin: 15px 0;
 	}
 </style>
