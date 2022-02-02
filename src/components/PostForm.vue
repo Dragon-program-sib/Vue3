@@ -38,6 +38,12 @@
 				};
 			},
 		},
+		/*watch: {
+			handler(newVal) {
+				console.log(newVal);
+			},
+			deep: true
+		}*/
 	};
 </script>
 

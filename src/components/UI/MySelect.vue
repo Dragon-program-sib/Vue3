@@ -1,10 +1,10 @@
 <template>
-	<select v-model="modelValue" @change="changeOption">
+	<select class="select" v-model="modelValue" @change="changeOption">
 		<option disabled value="">Выберите из списка</option>
 		<option
 			v-for="option in options"
 			:key="option.value"
-			value="option.value"
+			:value="option.value"
 		>
 			{{ option.name }}
 		</option>
@@ -12,8 +12,6 @@
 </template>
 
 <script>
-	import { ref, reactive } from "vue";
-
 	export default {
 		name: "my-select",
 		props: {
@@ -22,11 +20,12 @@
 			},
 			options: {
 				type: Array,
-				default: () => [],
+				default: () => []
 			},
 		},
 		methods: {
-			changeOptions(event) {
+			changeOption(event) {
+				// console.log(event);
 				this.$emit("update:modelValue", event.target.value);
 			},
 		},
@@ -34,4 +33,11 @@
 </script>
 
 <style scoped>
+	.select {
+		padding: 10px 15px;
+		background: none;
+		color: teal;
+		border: 1px solid teal;
+		cursor: pointer;
+	}
 </style>
