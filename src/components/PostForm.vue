@@ -3,7 +3,10 @@
 		<h4>Создание поста:</h4>
 		<my-input v-model="post.title" type="text" placeholder="Название" />
 		<my-input v-model="post.body" type="text" placeholder="Описание" />
-		<my-button class="btn btn-del" style="align-self: flex-end" @click="createPost"
+		<my-button
+			class="btn btn-del"
+			style="align-self: flex-end"
+			@click="createPost"
 			>Создать
 		</my-button>
 	</form>
@@ -11,12 +14,12 @@
 
 <script>
 	/*import MyInput from "@/components/UI/MyInput";
-	import MyButton from "@/components/UI/MyButton";*/
+		import MyButton from "@/components/UI/MyButton";*/
 	export default {
 		/*components: {
-			MyInput,
-			MyButton,
-		},*/
+				MyInput,
+				MyButton,
+			},*/
 		data() {
 			return {
 				post: {
