@@ -22,4 +22,11 @@
 		padding: 10px 15px;
 		margin-top: 15px;
 	}
+
+	:active,
+	:hover,
+	:focus {
+		outline: 0;
+		outline-offset: 0;
+	}
 </style>
