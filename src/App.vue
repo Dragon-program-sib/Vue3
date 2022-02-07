@@ -80,6 +80,7 @@
 			},
 			changePage(pageNumber) {
 				this.page = pageNumber;
+				// this.fetchPosts(); The first option is to load the posts of the selected page.
 			},
 			async fetchPosts() {
 				try {
@@ -128,6 +129,9 @@
 			dialogVisible(newValue) {
 				console.log(newValue);
 			},
+			page() {
+				this.fetchPosts(); // The second option is to load the posts of the selected page.
+			},
 		},
 	};
 </script>
@@ -151,6 +155,7 @@
 
 	.page {
 		border: 1px solid black;
+		cursor: pointer;
 		padding: 10px;
 	}
 
