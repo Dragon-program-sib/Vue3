@@ -24,6 +24,7 @@
 				:class="{
 					'page-current': page === pageNumber,
 				}"
+				@click="changePage(pageNumber)"
 			>
 				{{ pageNumber }}
 			</div>
@@ -50,8 +51,8 @@
 			return {
 				posts: [
 					/*{ id: 1, title: "Vue3 (a)", body: "Описание поста - 1" },
-																	{ id: 2, title: "Vue3 (b)", body: "Описание поста - 2" },
-																	{ id: 3, title: "Vue3 (c)", body: "Описание поста - 3" },*/
+																		{ id: 2, title: "Vue3 (b)", body: "Описание поста - 2" },
+																		{ id: 3, title: "Vue3 (c)", body: "Описание поста - 3" },*/
 				],
 				dialogVisible: false,
 				isPostsLoading: false,
@@ -77,6 +78,9 @@
 			showDialog() {
 				this.dialogVisible = true;
 			},
+			changePage(pageNumber) {
+				this.page = pageNumber;
+			},
 			async fetchPosts() {
 				try {
 					this.isPostsLoading = true;
@@ -90,7 +94,7 @@
 						}
 					);
 					this.totalPages = Math.ceil(
-						response.headers['x-total-count'] / this.limit
+						response.headers["x-total-count"] / this.limit
 					);
 					this.posts = response.data;
 					// console.log(response);
@@ -151,7 +155,7 @@
 	}
 
 	.page-current {
-		border: 2px solid teal;
+		outline: 2px solid teal;
 	}
 
 	.page__wrapper {
