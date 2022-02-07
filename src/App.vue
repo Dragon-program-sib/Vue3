@@ -16,7 +16,8 @@
 			v-if="!isPostsLoading"
 		/>
 		<div v-else>Идёт загрузка...</div>
-		<div class="page__wrapper">
+		<div class="observer" ref="observer"></div>
+		<!-- <div class="page__wrapper">
 			<div
 				v-for="pageNumber in totalPages"
 				:key="pageNumber"
@@ -28,7 +29,7 @@
 			>
 				{{ pageNumber }}
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -51,8 +52,8 @@
 			return {
 				posts: [
 					/*{ id: 1, title: "Vue3 (a)", body: "Описание поста - 1" },
-																		{ id: 2, title: "Vue3 (b)", body: "Описание поста - 2" },
-																		{ id: 3, title: "Vue3 (c)", body: "Описание поста - 3" },*/
+																			{ id: 2, title: "Vue3 (b)", body: "Описание поста - 2" },
+																			{ id: 3, title: "Vue3 (c)", body: "Описание поста - 3" },*/
 				],
 				dialogVisible: false,
 				isPostsLoading: false,
@@ -78,10 +79,10 @@
 			showDialog() {
 				this.dialogVisible = true;
 			},
-			changePage(pageNumber) {
-				this.page = pageNumber;
-				// this.fetchPosts(); The first option is to load the posts of the selected page.
-			},
+			/*changePage(pageNumber) {
+					this.page = pageNumber;
+					// this.fetchPosts(); The first option is to load the posts of the selected page.
+				},*/
 			async fetchPosts() {
 				try {
 					this.isPostsLoading = true;
@@ -105,9 +106,48 @@
 					this.isPostsLoading = false;
 				}
 			},
+			async loadMorePosts() {
+				try {
+					this.page += 1;
+					// this.isPostsLoading = true;
+					const response = await axios.get(
+						"https://jsonplaceholder.typicode.com/posts",
+						{
+							params: {
+								_page: this.page,
+								_limit: this.limit,
+							},
+						}
+					);
+					this.totalPages = Math.ceil(
+						response.headers["x-total-count"] / this.limit
+					);
+					this.posts = [...this.posts, ...response.data];
+					//this.posts = response.data;
+					// console.log(response);
+				} catch (e) {
+					alert("Ошибка!");
+				} finally {
+					// this.isPostsLoading = false;
+				}
+			},
 		},
 		mounted() {
 			this.fetchPosts();
+			console.log(this.$refs.observer);
+			const options = {
+				// root: document.querySelector("#scrollArea"),
+				rootMargin: "0px",
+				threshold: 1.0,
+			};
+			const callback = (entries, observer) => {
+				if (entries[0].isIntersecting) {
+					// console.log();
+					this.loadMorePosts();
+				}
+			};
+			const observer = new IntersectionObserver(callback, options);
+			observer.observe(this.$refs.observer);
 		},
 		computed: {
 			sortedPosts() {
@@ -126,12 +166,12 @@
 			},
 		},
 		watch: {
-			dialogVisible(newValue) {
-				console.log(newValue);
-			},
-			page() {
-				this.fetchPosts(); // The second option is to load the posts of the selected page.
-			},
+			/* dialogVisible(newValue) {
+					console.log(newValue);
+				},
+				page() {
+					this.fetchPosts(); // The second option is to load the posts of the selected page.
+				}, */
 		},
 	};
 </script>
@@ -166,5 +206,10 @@
 	.page__wrapper {
 		display: flex;
 		margin-top: 15px;
+	}
+
+	.observer {
+		height: 30px;
+		background: green;
 	}
 </style>
