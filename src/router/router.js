@@ -2,6 +2,7 @@
 import Main from "@/pages/Main";
 import PostsPage from "@/pages/PostsPage";
 import About from "@/pages/About";
+import PostIdPage from "@/pages/PostIdPage";
 import {
     createRouter,
     createWebHistory
@@ -18,6 +19,10 @@ const routes = [{
     {
         path: "/about",
         component: About,
+    },
+    {
+        path: "/posts/:id",
+        component: PostIdPage,
     },
 ];
 

@@ -6,6 +6,9 @@
 			<div><strong>Описание: </strong>{{ post.body }}</div>
 		</div>
 		<div class="post__btns">
+			<my-button @click="$router.push(`/posts/${post.id}`)"
+				>Открыть</my-button
+			>
 			<my-button @click="$emit('remove', post)">Удалить</my-button>
 		</div>
 	</div>
@@ -15,8 +18,8 @@
 	/*import MyButton from "@/components/UI/MyButton";*/
 	export default {
 		/*components: {
-			MyButton,
-			},*/
+				MyButton,
+				},*/
 		props: {
 			post: {
 				type: Object,
@@ -34,5 +37,9 @@
 		padding: 15px;
 		border: 2px solid teal;
 		margin-top: 15px;
+	}
+
+	.post__btns {
+		display: flex;
 	}
 </style>
