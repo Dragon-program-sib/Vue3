@@ -11,6 +11,9 @@
 	export default {
 		name: "my-dialog",
 		mixins: [toggleMixin],
+		mounted() {
+			console.log("dialog mounted");
+		},
 		// props: {
 		// 	show: {
 		// 		type: Boolean,
