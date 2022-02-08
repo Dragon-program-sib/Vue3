@@ -1,4 +1,3 @@
-"use strict";
 import Main from "@/pages/Main";
 import PostsPage from "@/pages/PostsPage";
 import About from "@/pages/About";

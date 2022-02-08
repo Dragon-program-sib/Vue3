@@ -16,7 +16,7 @@
 			v-if="!isPostsLoading"
 		/>
 		<div v-else>Идёт загрузка...</div>
-		<div class="observer" ref="observer"></div>
+		<div v-intersection="loadMorePosts" ref="observer"></div>
 		<!-- <div class="page__wrapper">
 			<div
 				v-for="pageNumber in totalPages"
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-'use strict';
 	import PostForm from "@/components/PostForm";
 	import PostList from "@/components/PostList";
 	import MyButton from "@/components/UI/MyButton";
@@ -137,19 +136,19 @@
 		mounted() {
 			this.fetchPosts();
 			console.log(this.$refs.observer);
-			const options = {
-				// root: document.querySelector("#scrollArea"),
-				rootMargin: "0px",
-				threshold: 1.0,
-			};
-			const callback = (entries, observer) => {
-				if (entries[0].isIntersecting && this.page < this.totalPages) {
-					// console.log();
-					this.loadMorePosts();
-				}
-			};
-			const observer = new IntersectionObserver(callback, options);
-			observer.observe(this.$refs.observer);
+			// const options = {
+			// 	// root: document.querySelector("#scrollArea"),
+			// 	rootMargin: "0px",
+			// 	threshold: 1.0,
+			// };
+			// const callback = (entries, observer) => {
+			// 	if (entries[0].isIntersecting && this.page < this.totalPages) {
+			// 		// console.log();
+			// 		this.loadMorePosts();
+			// 	}
+			// };
+			// const observer = new IntersectionObserver(callback, options);
+			// observer.observe(this.$refs.observer);
 		},
 		computed: {
 			sortedPosts() {

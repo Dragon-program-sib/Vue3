@@ -5,6 +5,7 @@ import {
 import App from '@/App';
 import components from '@/components/UI';
 import router from "@/router/router";
+import VIntersection from "@/components/directives/VIntersection";
 
 // import App from './App.vue'
 // import router from './router'
@@ -15,6 +16,8 @@ const app = createApp(App);
 components.forEach(component => {
     app.component(component.name, component);
 });
+
+app.directive('intersection', VIntersection);
 
 app
     .use(router)

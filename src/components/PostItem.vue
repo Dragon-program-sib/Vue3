@@ -18,8 +18,8 @@
 	/*import MyButton from "@/components/UI/MyButton";*/
 	export default {
 		/*components: {
-				MyButton,
-				},*/
+			MyButton,
+		},*/
 		props: {
 			post: {
 				type: Object,
