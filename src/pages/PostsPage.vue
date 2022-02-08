@@ -39,8 +39,9 @@
 	import PostList from "@/components/PostList";
 	import MyButton from "@/components/UI/MyButton";
 	import MySelect from "@/components/UI/MySelect";
-	import axios from "axios";
 	import MyInput from "@/components/UI/MyInput";
+	import axios from "axios";
+	
 	export default {
 		components: {
 			PostForm,

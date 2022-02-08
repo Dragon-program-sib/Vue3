@@ -1,18 +1,23 @@
 "use strict";
 import Main from "@/pages/Main";
+import PostsPage from "@/pages/PostsPage";
+import About from "@/pages/About";
 import {
     createRouter,
     createWebHistory
 } from "vue-router";
-import UserPage from "@/pages/UserPage";
 
 const routes = [{
         path: "/",
         component: Main,
     },
     {
-        path: "/users",
-        component: UserPage,
+        path: "/posts",
+        component: PostsPage,
+    },
+    {
+        path: "/about",
+        component: About,
     },
 ];
 
