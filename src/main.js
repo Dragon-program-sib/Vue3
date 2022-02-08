@@ -6,7 +6,7 @@ import App from "@/App";
 import components from "@/components/UI";
 import router from "@/router/router";
 // import VIntersection from "@/components/directives/VIntersection";
-import directives from "@/components/directives";
+import directives from "@/directives";
 
 // import App from './App.vue'
 // import router from './router'
